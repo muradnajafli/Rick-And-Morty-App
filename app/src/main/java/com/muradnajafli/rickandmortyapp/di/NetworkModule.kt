@@ -13,7 +13,7 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
-//HEy
+
     @Provides
     @Singleton
     fun provideApiService(retrofit: Retrofit): RickAndMortyApi {

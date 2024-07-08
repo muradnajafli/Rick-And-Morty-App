@@ -1,6 +1,6 @@
 package com.muradnajafli.rickandmortyapp.presentation.home.components
 
-import androidx.compose.foundation.Image
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -17,6 +17,7 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -25,7 +26,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.LinearGradient
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -105,18 +105,19 @@ fun CharacterItem(
                     tint = Color.Unspecified
                 )
 
-                "Unknown" -> Icon(
+                "unknown" -> Icon(
                     painter = painterResource(id = R.drawable.ic_gender_unknown),
                     contentDescription = "Character Icon",
                     modifier = Modifier
                         .align(Alignment.TopEnd)
-                        .padding(8.dp)
+                        .padding(8.dp),
+                    tint = Color.Unspecified
                 )
 
                 else -> GenderlessIcon(
                     modifier = Modifier
                         .align(Alignment.TopEnd)
-                        .padding(8.dp),
+                        .padding(8.dp)
                 )
             }
             if (character.isSaved) {
@@ -153,13 +154,11 @@ fun CharacterItem(
         )
         Spacer(modifier = Modifier.height(32.dp))
     }
-
 }
 
 @Composable
 @Preview
 fun GenderlessIcon(modifier: Modifier = Modifier) {
-
     val brush = Brush.linearGradient(
         colors = listOf(
             Color(0xFFDC0000),
@@ -167,6 +166,7 @@ fun GenderlessIcon(modifier: Modifier = Modifier) {
             Color(0xFFDC0000)
         )
     )
+
     Box(
         modifier = modifier
             .size(30.dp)

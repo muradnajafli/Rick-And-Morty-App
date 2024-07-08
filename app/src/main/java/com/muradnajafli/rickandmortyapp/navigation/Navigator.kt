@@ -39,22 +39,21 @@ fun Navigator(
         ) {
             composable<Home> {
                 val viewModel: HomeViewModel = hiltViewModel()
-                val characters by viewModel.characters.collectAsStateWithLifecycle()
-                val errorMessage by viewModel.errorMessage.collectAsStateWithLifecycle()
-                val isLoading by viewModel.isLoading.collectAsStateWithLifecycle()
+                val homeUiState by viewModel.uiState.collectAsStateWithLifecycle()
                 val searchParameters by viewModel.searchParameters.collectAsStateWithLifecycle()
 
-                LaunchedEffect(Unit) {
-                    viewModel.fetchCharacters()
-                }
+//                LaunchedEffect(Unit) {
+//                    viewModel.fetchCharacters()
+//                }
 
                 HomeScreen(
                     onSearch = viewModel::onSearch,
                     searchParams = searchParameters,
-                    characterList = characters,
+                    characterList = homeUiState.characters,
                     onNavigateToDetails = { id ->
                         navController.navigate(Details(id))
-                    }
+                    },
+                    isLoading = homeUiState.isLoading
                 )
             }
 

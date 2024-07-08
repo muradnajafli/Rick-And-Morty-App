@@ -6,6 +6,5 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "rick_and_morty")
 data class RickAndMortyEntity(
-    @PrimaryKey val id: Int?,
-    val isSaved: Boolean,
+    @PrimaryKey val id: Int,
 )

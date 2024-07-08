@@ -1,6 +1,5 @@
 package com.muradnajafli.rickandmortyapp.presentation.details
 
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.muradnajafli.rickandmortyapp.data.mapper.toRickAndMortyEntity
@@ -9,16 +8,11 @@ import com.muradnajafli.rickandmortyapp.domain.usecase.details.AddCharacterUseCa
 import com.muradnajafli.rickandmortyapp.domain.usecase.details.DeleteCharacterUseCase
 import com.muradnajafli.rickandmortyapp.domain.usecase.details.GetCharacterByIdFromSaved
 import com.muradnajafli.rickandmortyapp.domain.usecase.details.GetCharacterByIdUseCase
-import com.muradnajafli.rickandmortyapp.domain.usecase.home.GetSavedCharacterUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import com.muradnajafli.rickandmortyapp.utils.Result
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.asSharedFlow
-import kotlinx.coroutines.flow.filterNotNull
-import kotlinx.coroutines.flow.firstOrNull
 import javax.inject.Inject
 
 
@@ -40,14 +34,14 @@ class DetailsViewModel @Inject constructor(
         viewModelScope.launch {
             getCharacterByIdUseCase(id).collect { result ->
                 when (result) {
+                    is Result.Success -> {
+                        _character.value = result.data
+                    }
                     is Result.Error -> {
-                        //
+
                     }
                     is Result.Loading -> {
                         //
-                    }
-                    is Result.Success -> {
-                        _character.value = result.data
                     }
                 }
             }

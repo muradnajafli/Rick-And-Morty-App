@@ -26,14 +26,13 @@ fun RickAndMortyListResponse.toRickAndMortyList(): List<RickAndMortyModel> {
 
 fun RickAndMortyModel.toRickAndMortyEntity(): RickAndMortyEntity {
     return RickAndMortyEntity(
-        id = id,
-        isSaved = false
+        id = id
     )
 }
 
 fun RickAndMortyEntity.toRickAndMortyModel(): RickAndMortyModel {
     return RickAndMortyModel(
-        id = id ?: -1,
+        id = id,
         name = "",
         status = "",
         species = "",
@@ -41,6 +40,6 @@ fun RickAndMortyEntity.toRickAndMortyModel(): RickAndMortyModel {
         image = "",
         gender = "",
         origin = "",
-        isSaved = isSaved
+        isSaved = true
     )
 }

@@ -42,10 +42,6 @@ fun Navigator(
                 val homeUiState by viewModel.uiState.collectAsStateWithLifecycle()
                 val searchParameters by viewModel.searchParameters.collectAsStateWithLifecycle()
 
-//                LaunchedEffect(Unit) {
-//                    viewModel.fetchCharacters()
-//                }
-
                 HomeScreen(
                     onSearch = viewModel::onSearch,
                     searchParams = searchParameters,
